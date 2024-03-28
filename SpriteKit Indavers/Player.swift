@@ -23,9 +23,26 @@ class Player: SKShapeNode {
         lineWidth = 4
         position = CGPoint(x: 304, y: 4)
         name = "player"
+        
+        physicsBody = SKPhysicsBody(polygonFrom: thePath)
+        physicsBody?.allowsRotation = false
+        physicsBody?.affectedByGravity = false
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func update(touching touch: CGPoint?) {
+        guard let touch = touch else { return }
+        
+        var speed = touch.x - position.x
+        if speed < -16 {
+            speed = -16
+        } else if speed > 16 {
+            speed = 16
+        }
+        
+        physicsBody?.velocity = CGVector(dx: speed * 24, dy: 0)
     }
 }
