@@ -9,6 +9,8 @@ import SpriteKit
 
 class GameScene: SKScene {
     
+    var gameBorder = GameBorder()
+    
     override required init(size: CGSize) {
         super.init(size: size)
     }
@@ -18,6 +20,8 @@ class GameScene: SKScene {
     }
     
     override func didMove(to view: SKView) {
-        backgroundColor = SKColor.blue
+        backgroundColor = .blue
+        
+        addChild(gameBorder)
     }
 }
