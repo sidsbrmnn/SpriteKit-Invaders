@@ -27,6 +27,17 @@ class GameScene: SKScene {
         
         addChild(gameBorder)
         gameBorder.addChild(player)
+        
+        let margin = 24
+        for xp in (0...10) {
+            for yp in (0...4) {
+                let alien = Alien()
+                alien.position.x = CGFloat(margin + xp * 48)
+                alien.position.y = CGFloat(432 - yp * 48)
+                
+                gameBorder.addChild(alien)
+            }
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {

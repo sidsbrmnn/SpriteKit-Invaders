@@ -15,6 +15,7 @@
 		4230AA832BB55ECE00446329 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA822BB55ECE00446329 /* GameScene.swift */; };
 		4230AA852BB5615300446329 /* GameBorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA842BB5615300446329 /* GameBorder.swift */; };
 		4230AA872BB5622100446329 /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA862BB5622100446329 /* Player.swift */; };
+		4230AA892BB565E200446329 /* Alien.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA882BB565E200446329 /* Alien.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 		4230AA822BB55ECE00446329 /* GameScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameScene.swift; sourceTree = "<group>"; };
 		4230AA842BB5615300446329 /* GameBorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBorder.swift; sourceTree = "<group>"; };
 		4230AA862BB5622100446329 /* Player.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4230AA882BB565E200446329 /* Alien.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alien.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				4230AA732BB55E5E00446329 /* GameViewController.swift */,
 				4230AA822BB55ECE00446329 /* GameScene.swift */,
 				4230AA862BB5622100446329 /* Player.swift */,
+				4230AA882BB565E200446329 /* Alien.swift */,
 				4230AA842BB5615300446329 /* GameBorder.swift */,
 				4230AA752BB55E5E00446329 /* Main.storyboard */,
 				4230AA782BB55E5E00446329 /* Assets.xcassets */,
@@ -145,6 +148,7 @@
 				4230AA832BB55ECE00446329 /* GameScene.swift in Sources */,
 				4230AA742BB55E5E00446329 /* GameViewController.swift in Sources */,
 				4230AA6C2BB55E5E00446329 /* AppDelegate.swift in Sources */,
+				4230AA892BB565E200446329 /* Alien.swift in Sources */,
 				4230AA872BB5622100446329 /* Player.swift in Sources */,
 				4230AA852BB5615300446329 /* GameBorder.swift in Sources */,
 			);
