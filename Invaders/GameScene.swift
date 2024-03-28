@@ -44,6 +44,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameBorder.addChild(alien)
             }
         }
+        
+        let interval = SKAction.wait(forDuration: 0.5)
+        let fire = SKAction.run {
+            if let alien = self.aliens.randomElement() {
+                let bullet = EnemyBullet()
+                bullet.position.x = alien.position.x + 16
+                bullet.position.y = alien.position.y - 12
+                
+                self.gameBorder.addChild(bullet)
+            }
+        }
+        
+        let sequence = SKAction.sequence([interval, fire])
+        gameBorder.run(SKAction.repeatForever(sequence))
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -85,6 +99,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             if spriteB?.name == "alien" {
                 spriteA?.removeFromParent()
                 spriteB?.removeFromParent()
+                aliens.remove(spriteB as! Alien)
             }
         }
     }

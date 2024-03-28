@@ -25,10 +25,13 @@ class Player: SKShapeNode {
         name = "player"
         
         physicsBody = SKPhysicsBody(polygonFrom: thePath)
-        physicsBody?.allowsRotation = false
         physicsBody?.affectedByGravity = false
+        physicsBody?.allowsRotation = false
         physicsBody?.linearDamping = 2
+        
         physicsBody?.categoryBitMask = Sprite.player.rawValue
+        physicsBody?.collisionBitMask = Sprite.wall.rawValue
+        physicsBody?.contactTestBitMask = Sprite.enemyBullet.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
