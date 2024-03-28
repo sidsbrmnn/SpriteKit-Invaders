@@ -25,6 +25,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func frameNamed(_ name: String, _ number: Int) -> String {
+        return String(format: "\(name)_%02d", arguments: [number])
+    }
+    
+    func explodeAnimation() -> SKAction {
+        var frames: [SKTexture] = []
+        for i in 0...11 {
+            let name = frameNamed("alien", i)
+            frames.append(SKTexture(imageNamed: name))
+        }
+        
+        return SKAction.animate(with: frames, timePerFrame: 1 / 24)
+    }
+    
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         
@@ -98,8 +112,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if spriteA?.name == "playerBullet" {
             if spriteB?.name == "alien" {
                 spriteA?.removeFromParent()
-                spriteB?.removeFromParent()
-                aliens.remove(spriteB as! Alien)
+                
+                spriteB?.physicsBody = nil
+                spriteB?.run(explodeAnimation()) {
+                    spriteB?.removeFromParent()
+                }
+                self.aliens.remove(spriteB as! Alien)
             }
         }
     }
