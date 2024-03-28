@@ -83,13 +83,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    override func didMove(to view: SKView) {
-        self.physicsWorld.contactDelegate = self
-        
-        backgroundColor = .blue
-        
-        addChild(gameBorder)
-        gameBorder.addChild(player)
+    fileprivate func startWave() {
+        aliens.removeAll()
         
         let margin = 24
         for xp in (0...10) {
@@ -102,6 +97,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameBorder.addChild(alien)
             }
         }
+    }
+    
+    override func didMove(to view: SKView) {
+        self.physicsWorld.contactDelegate = self
+        
+        backgroundColor = .blue
+        
+        addChild(gameBorder)
+        gameBorder.addChild(player)
+        
+        startWave()
         
         let interval = SKAction.wait(forDuration: 0.5)
         let fire = SKAction.run {
