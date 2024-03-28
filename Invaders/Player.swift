@@ -38,11 +38,12 @@ class Player: SKShapeNode {
         guard let touch = touch else { return }
         
         var speed = touch.x - position.x
-        if speed < -16 {
-            speed = -16
-        } else if speed > 16 {
-            speed = 16
-        }
+//        if speed < -16 {
+//            speed = -16
+//        } else if speed > 16 {
+//            speed = 16
+//        }
+        speed = min(max(speed, -16), 16)
         
         physicsBody?.velocity = CGVector(dx: speed * 24, dy: 0)
     }
