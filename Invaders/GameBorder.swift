@@ -13,7 +13,7 @@ class GameBorder: SKShapeNode {
         super.init()
         
         let thePath = CGMutablePath()
-        let rect = CGRect(x: 0, y: 0, width: 640, height: 960)
+        let rect = CGRect(x: 0, y: 0, width: 640, height: 480)
         thePath.addRect(rect)
         
         path = thePath
