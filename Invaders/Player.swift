@@ -24,7 +24,11 @@ class Player: SKShapeNode {
         position = CGPoint(x: 304, y: 4)
         name = "player"
         
-        physicsBody = SKPhysicsBody(polygonFrom: thePath)
+        setupPhysics()
+    }
+    
+    func setupPhysics() {
+        physicsBody = SKPhysicsBody(polygonFrom: path!)
         physicsBody?.affectedByGravity = false
         physicsBody?.allowsRotation = false
         physicsBody?.linearDamping = 2

@@ -35,6 +35,54 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         return SKAction.animate(with: frames, timePerFrame: 1 / 24)
     }
     
+    func explodePlayer() {
+        if player.alpha == 0 { 
+            return
+        }
+        
+        player.alpha = 0
+        
+        var pieces: [SKSpriteNode] = []
+        for i in 0...2 {
+            let name = String(format: "player_piece_%d", arguments: [i])
+            let piece = SKSpriteNode(imageNamed: name)
+            
+            piece.name = "piece"
+            
+            piece.position = self.player.position
+            piece.position.x += CGFloat.random(in: -32...32)
+            piece.position.y += CGFloat.random(in: 16...32)
+            
+            piece.physicsBody = SKPhysicsBody(texture: piece.texture!, size: piece.size)
+            piece.physicsBody?.angularVelocity = CGFloat.random(in: -3.14...3.14)
+            piece.physicsBody?.categoryBitMask = Sprite.player.rawValue
+            piece.physicsBody?.collisionBitMask = Sprite.wall.rawValue
+            piece.physicsBody?.restitution = 0.98
+            piece.physicsBody?.velocity = player.physicsBody!.velocity
+            
+            gameBorder.addChild(piece)
+            pieces.append(piece)
+        }
+        
+        // after 1.5 seconds, the player will reappear and rejoin the physics simulation
+        player.run(SKAction.wait(forDuration: 1.5)) {
+            self.player.alpha = 1
+            self.player.setupPhysics()
+        }
+        
+        // default the player to intial position
+        player.position = CGPoint(x: 304, y: 4)
+        // take the player out of simulation
+        player.physicsBody = nil
+        
+        let fadeOut = SKAction.fadeOut(withDuration: 1.5)
+        for piece in pieces {
+            piece.run(fadeOut) {
+                piece.removeFromParent()
+            }
+        }
+    }
+    
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         
@@ -71,7 +119,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func update(_ currentTime: TimeInterval) {
-        player.update(touching: lastTouch)
+        if player.alpha == 1 {
+            player.update(touching: lastTouch)
+        }
         
         if reverseDirection {
             // invert speed
@@ -116,6 +166,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 self.aliens.remove(spriteB as! Alien)
             }
         }
+        
+        if spriteA?.name == "alienBullet" && spriteB?.name == "player" {
+            explodePlayer()
+        }
+        if spriteA?.name == "player" && spriteB?.name == "alienBullet" {
+            explodePlayer()
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -130,6 +187,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         lastTouch = nil
+        
+        if player.alpha == 0 {
+            return
+        }
         
         let bullet = PlayerBullet()
         bullet.position.x = player.position.x + 16
