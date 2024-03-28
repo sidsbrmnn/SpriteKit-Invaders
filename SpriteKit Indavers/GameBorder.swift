@@ -21,6 +21,10 @@ class GameBorder: SKShapeNode {
         lineWidth = 4
         position = CGPoint(x: 0, y: 480)
         name = "bounds"
+        
+        physicsBody = SKPhysicsBody(edgeLoopFrom: thePath)
+        physicsBody?.allowsRotation = false
+        physicsBody?.affectedByGravity = false
     }
     
     required init?(coder aDecoder: NSCoder) {
