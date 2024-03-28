@@ -1,6 +1,6 @@
 //
 //  Player.swift
-//  SpriteKit Indavers
+//  Invaders
 //
 //  Created by Siddharth Subramanian on 3/28/24.
 //

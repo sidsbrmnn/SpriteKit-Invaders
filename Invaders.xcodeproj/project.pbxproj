@@ -20,7 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		4230AA682BB55E5E00446329 /* SpriteKit Indavers.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SpriteKit Indavers.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4230AA682BB55E5E00446329 /* Invaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4230AA6B2BB55E5E00446329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4230AA732BB55E5E00446329 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
 		4230AA762BB55E5E00446329 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -47,7 +47,7 @@
 		4230AA5F2BB55E5E00446329 = {
 			isa = PBXGroup;
 			children = (
-				4230AA6A2BB55E5E00446329 /* SpriteKit Indavers */,
+				4230AA6A2BB55E5E00446329 /* Invaders */,
 				4230AA692BB55E5E00446329 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,12 +55,12 @@
 		4230AA692BB55E5E00446329 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4230AA682BB55E5E00446329 /* SpriteKit Indavers.app */,
+				4230AA682BB55E5E00446329 /* Invaders.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4230AA6A2BB55E5E00446329 /* SpriteKit Indavers */ = {
+		4230AA6A2BB55E5E00446329 /* Invaders */ = {
 			isa = PBXGroup;
 			children = (
 				4230AA6B2BB55E5E00446329 /* AppDelegate.swift */,
@@ -74,15 +74,15 @@
 				4230AA782BB55E5E00446329 /* Assets.xcassets */,
 				4230AA7A2BB55E5E00446329 /* LaunchScreen.storyboard */,
 			);
-			path = "SpriteKit Indavers";
+			path = Invaders;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		4230AA672BB55E5E00446329 /* SpriteKit Indavers */ = {
+		4230AA672BB55E5E00446329 /* Invaders */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4230AA7F2BB55E5E00446329 /* Build configuration list for PBXNativeTarget "SpriteKit Indavers" */;
+			buildConfigurationList = 4230AA7F2BB55E5E00446329 /* Build configuration list for PBXNativeTarget "Invaders" */;
 			buildPhases = (
 				4230AA642BB55E5E00446329 /* Sources */,
 				4230AA652BB55E5E00446329 /* Frameworks */,
@@ -92,9 +92,9 @@
 			);
 			dependencies = (
 			);
-			name = "SpriteKit Indavers";
-			productName = "SpriteKit Indavers";
-			productReference = 4230AA682BB55E5E00446329 /* SpriteKit Indavers.app */;
+			name = Invaders;
+			productName = Invaders;
+			productReference = 4230AA682BB55E5E00446329 /* Invaders.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -112,7 +112,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4230AA632BB55E5E00446329 /* Build configuration list for PBXProject "SpriteKit Indavers" */;
+			buildConfigurationList = 4230AA632BB55E5E00446329 /* Build configuration list for PBXProject "Invaders" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -125,7 +125,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4230AA672BB55E5E00446329 /* SpriteKit Indavers */,
+				4230AA672BB55E5E00446329 /* Invaders */,
 			);
 		};
 /* End PBXProject section */
@@ -319,7 +319,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sidsbrmnn.SpriteKit-Indavers";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sidsbrmnn.Invaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -347,7 +347,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.sidsbrmnn.SpriteKit-Indavers";
+				PRODUCT_BUNDLE_IDENTIFIER = com.sidsbrmnn.Invaders;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -358,7 +358,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4230AA632BB55E5E00446329 /* Build configuration list for PBXProject "SpriteKit Indavers" */ = {
+		4230AA632BB55E5E00446329 /* Build configuration list for PBXProject "Invaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4230AA7D2BB55E5E00446329 /* Debug */,
@@ -367,7 +367,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4230AA7F2BB55E5E00446329 /* Build configuration list for PBXNativeTarget "SpriteKit Indavers" */ = {
+		4230AA7F2BB55E5E00446329 /* Build configuration list for PBXNativeTarget "Invaders" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4230AA802BB55E5E00446329 /* Debug */,
