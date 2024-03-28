@@ -25,6 +25,7 @@ class GameBorder: SKShapeNode {
         physicsBody = SKPhysicsBody(edgeLoopFrom: thePath)
         physicsBody?.allowsRotation = false
         physicsBody?.affectedByGravity = false
+        physicsBody?.categoryBitMask = Sprite.wall.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
