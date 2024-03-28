@@ -88,8 +88,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     fileprivate func startWave() {
+        gameOver = false
+        
+        // reset the game
+        for alien in aliens {
+            alien.removeFromParent()
+        }
         aliens.removeAll()
         
+        player.alpha = 1
+        player.setupPhysics()
+        
+        alienSpeed = 64
+        
+        // spawn aliens
         let margin = 24
         for xp in (0...10) {
             for yp in (0...4) {
@@ -101,6 +113,29 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 gameBorder.addChild(alien)
             }
         }
+        
+        // pop up start screen
+        let sprite = SKSpriteNode(imageNamed: "start")
+        sprite.texture?.filteringMode = .nearest
+        sprite.position = CGPoint(x: 304, y: 204)
+        sprite.setScale(2)
+        
+        let wait = SKAction.wait(forDuration: 0.05)
+        let invisible = SKAction.run {
+            sprite.alpha = 0
+        }
+        let visible = SKAction.run {
+            sprite.alpha = 1
+        }
+        
+        let sequence = SKAction.sequence([invisible, wait, visible, wait])
+        let blink = SKAction.repeat(sequence, count: 4)
+        
+        sprite.run(blink) {
+            sprite.removeFromParent()
+        }
+        
+        gameBorder.addChild(sprite)
     }
     
     override func didMove(to view: SKView) {
@@ -134,6 +169,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     fileprivate func endGame() {
         gameOver = true
         explodePlayer()
+        
+        let sprite = SKSpriteNode(imageNamed: "gameover")
+        sprite.texture?.filteringMode = .nearest
+        sprite.position = CGPoint(x: 304, y: 240)
+        sprite.setScale(2)
+        
+        let wait = SKAction.wait(forDuration: 0.05)
+        let sizeDown = SKAction.scale(to: 1.5, duration: 0.5)
+        let sizeUp = SKAction.scale(to: 2.5, duration: 0.5)
+        
+        let sequence = SKAction.sequence([sizeDown, wait, sizeUp, wait])
+        let blink = SKAction.repeat(sequence, count: 6)
+        
+        sprite.run(blink) {
+            sprite.removeFromParent()
+            self.startWave()
+        }
+        
+        gameBorder.addChild(sprite)
     }
     
     override func update(_ currentTime: TimeInterval) {
