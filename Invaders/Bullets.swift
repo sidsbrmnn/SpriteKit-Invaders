@@ -39,7 +39,7 @@ class PlayerBullet: Bullet {
         name = "playerBullet"
         
         physicsBody?.velocity = CGVector(dx: 0, dy: 384)
-        physicsBody?.contactTestBitMask = Sprite.wall.rawValue | Sprite.enemy.rawValue
+        physicsBody?.contactTestBitMask = Sprite.wall.rawValue | Sprite.alien.rawValue
         physicsBody?.categoryBitMask = Sprite.playerBullet.rawValue
     }
     
@@ -48,16 +48,16 @@ class PlayerBullet: Bullet {
     }
 }
 
-class EnemyBullet: Bullet {
+class AlienBullet: Bullet {
     
     required init() {
         super.init()
         
-        name = "enemyBullet"
+        name = "alienBullet"
         
         physicsBody?.velocity = CGVector(dx: 0, dy: -384)
         physicsBody?.contactTestBitMask = Sprite.wall.rawValue
-        physicsBody?.categoryBitMask = Sprite.enemyBullet.rawValue
+        physicsBody?.categoryBitMask = Sprite.alienBullet.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {

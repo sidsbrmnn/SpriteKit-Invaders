@@ -7,8 +7,8 @@
 
 enum Sprite: UInt32 {
     case player
-    case enemy
+    case alien
     case wall
     case playerBullet
-    case enemyBullet
+    case alienBullet
 }

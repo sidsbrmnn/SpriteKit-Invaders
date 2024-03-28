@@ -25,14 +25,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func frameNamed(_ name: String, _ number: Int) -> String {
-        return String(format: "\(name)_%02d", arguments: [number])
-    }
-    
-    func explodeAnimation() -> SKAction {
+    func explodeAlien() -> SKAction {
         var frames: [SKTexture] = []
         for i in 0...11 {
-            let name = frameNamed("alien", i)
+            let name = String(format: "alien_%02d", arguments: [i])
             frames.append(SKTexture(imageNamed: name))
         }
         
@@ -62,7 +58,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let interval = SKAction.wait(forDuration: 0.5)
         let fire = SKAction.run {
             if let alien = self.aliens.randomElement() {
-                let bullet = EnemyBullet()
+                let bullet = AlienBullet()
                 bullet.position.x = alien.position.x + 16
                 bullet.position.y = alien.position.y - 12
                 
@@ -104,7 +100,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spriteB?.removeFromParent()
             }
             
-            if spriteB?.name == "enemyBullet" {
+            if spriteB?.name == "alienBullet" {
                 spriteB?.removeFromParent()
             }
         }
@@ -114,7 +110,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spriteA?.removeFromParent()
                 
                 spriteB?.physicsBody = nil
-                spriteB?.run(explodeAnimation()) {
+                spriteB?.run(explodeAlien()) {
                     spriteB?.removeFromParent()
                 }
                 self.aliens.remove(spriteB as! Alien)

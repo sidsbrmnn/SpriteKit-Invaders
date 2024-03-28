@@ -31,7 +31,7 @@ class Player: SKShapeNode {
         
         physicsBody?.categoryBitMask = Sprite.player.rawValue
         physicsBody?.collisionBitMask = Sprite.wall.rawValue
-        physicsBody?.contactTestBitMask = Sprite.enemyBullet.rawValue
+        physicsBody?.contactTestBitMask = Sprite.alienBullet.rawValue
     }
     
     required init?(coder aDecoder: NSCoder) {
