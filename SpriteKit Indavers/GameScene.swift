@@ -10,6 +10,7 @@ import SpriteKit
 class GameScene: SKScene {
     
     var gameBorder = GameBorder()
+    var player = Player()
     
     override required init(size: CGSize) {
         super.init(size: size)
@@ -23,5 +24,6 @@ class GameScene: SKScene {
         backgroundColor = .blue
         
         addChild(gameBorder)
+        gameBorder.addChild(player)
     }
 }
