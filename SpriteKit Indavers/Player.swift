@@ -27,6 +27,7 @@ class Player: SKShapeNode {
         physicsBody = SKPhysicsBody(polygonFrom: thePath)
         physicsBody?.allowsRotation = false
         physicsBody?.affectedByGravity = false
+        physicsBody?.linearDamping = 2
     }
     
     required init?(coder aDecoder: NSCoder) {
