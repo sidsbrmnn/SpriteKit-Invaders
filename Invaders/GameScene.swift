@@ -11,6 +11,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameBorder = GameBorder()
     var player = Player()
+    var livesSprite = SKSpriteNode(imageNamed: "lives_3")
+    var livesTextures: [SKTexture] = []
+    var lives = 3
     
     var lastTouch: CGPoint?
     var reverseDirection = false
@@ -38,7 +41,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func explodePlayer() {
-        if player.alpha == 0 { 
+        lives -= 1
+        updateLives()
+        
+        if player.alpha == 0 {
             return
         }
         
@@ -138,6 +144,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         gameBorder.addChild(sprite)
     }
     
+    fileprivate func updateLives() {
+        if lives == 0 {
+            livesSprite.texture = nil
+            endGame()
+            return
+        }
+        
+        livesSprite.texture = livesTextures[lives]
+        livesSprite.texture?.filteringMode = .nearest
+    }
+    
     override func didMove(to view: SKView) {
         self.physicsWorld.contactDelegate = self
         
@@ -145,6 +162,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         addChild(gameBorder)
         gameBorder.addChild(player)
+        
+        livesSprite.position = CGPoint(x: 64, y: 448)
+        livesSprite.setScale(2)
+        addChild(livesSprite)
+        
+        livesTextures.append(SKTexture(imageNamed: "alien_11"))
+        livesTextures.append(SKTexture(imageNamed: "lives_1"))
+        livesTextures.append(SKTexture(imageNamed: "lives_2"))
+        livesTextures.append(SKTexture(imageNamed: "lives_3"))
+        
+        updateLives()
         
         startWave()
         
@@ -168,7 +196,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     fileprivate func endGame() {
         gameOver = true
-        explodePlayer()
+        
+        if lives > 0 {
+            explodePlayer()
+        }
         
         let sprite = SKSpriteNode(imageNamed: "gameover")
         sprite.texture?.filteringMode = .nearest
@@ -184,6 +215,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         sprite.run(blink) {
             sprite.removeFromParent()
+            self.lives = 3
+            self.updateLives()
             self.startWave()
         }
         
@@ -234,6 +267,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         reverseDirection = false
+        
+        if aliens.isEmpty {
+            startWave()
+        }
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
