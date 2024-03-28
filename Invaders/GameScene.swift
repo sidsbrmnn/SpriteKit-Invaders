@@ -130,11 +130,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if reverseDirection {
+            // increase speed
+            if alienSpeed < 0 {
+                alienSpeed -= 8
+            } else {
+                alienSpeed += 8
+            }
+            
+            alienSpeed = min(max(alienSpeed, -1024), 1024)
+            
             // invert speed
             alienSpeed = -alienSpeed
             
             // turn off direction
             reverseDirection = false
+            
+            // lower its position
+            for alien in aliens {
+                alien.position.y -= 8
+            }
         }
         
         for alien in aliens {
