@@ -9,4 +9,6 @@ enum Sprite: UInt32 {
     case player
     case enemy
     case wall
+    case playerBullet
+    case enemyBullet
 }

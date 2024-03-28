@@ -71,6 +71,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 // if aliens touch the wall, change their direction
                 reverseDirection = true
             }
+            
+            if spriteB?.name == "playerBullet" {
+                spriteB?.removeFromParent()
+            }
+            
+            if spriteB?.name == "enemyBullet" {
+                spriteB?.removeFromParent()
+            }
+        }
+        
+        if spriteA?.name == "playerBullet" {
+            if spriteB?.name == "alien" {
+                spriteA?.removeFromParent()
+                spriteB?.removeFromParent()
+            }
         }
     }
     
@@ -86,6 +101,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         lastTouch = nil
+        
+        let bullet = PlayerBullet()
+        bullet.position.x = player.position.x + 16
+        bullet.position.y = player.position.y + 24
+        gameBorder.addChild(bullet)
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {

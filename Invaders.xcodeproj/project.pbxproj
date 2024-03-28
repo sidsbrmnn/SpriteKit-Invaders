@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		420CB7152BB5F359005510A0 /* Bullets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 420CB7142BB5F359005510A0 /* Bullets.swift */; };
 		4230AA6C2BB55E5E00446329 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA6B2BB55E5E00446329 /* AppDelegate.swift */; };
 		4230AA742BB55E5E00446329 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4230AA732BB55E5E00446329 /* GameViewController.swift */; };
 		4230AA772BB55E5E00446329 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 4230AA762BB55E5E00446329 /* Base */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		420CB7142BB5F359005510A0 /* Bullets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bullets.swift; sourceTree = "<group>"; };
 		4230AA682BB55E5E00446329 /* Invaders.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invaders.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4230AA6B2BB55E5E00446329 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4230AA732BB55E5E00446329 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				4230AA822BB55ECE00446329 /* GameScene.swift */,
 				4230AA862BB5622100446329 /* Player.swift */,
 				4230AA882BB565E200446329 /* Alien.swift */,
+				420CB7142BB5F359005510A0 /* Bullets.swift */,
 				4230AA8A2BB56A3400446329 /* Settings.swift */,
 				4230AA842BB5615300446329 /* GameBorder.swift */,
 				4230AA752BB55E5E00446329 /* Main.storyboard */,
@@ -151,6 +154,7 @@
 				4230AA832BB55ECE00446329 /* GameScene.swift in Sources */,
 				4230AA742BB55E5E00446329 /* GameViewController.swift in Sources */,
 				4230AA6C2BB55E5E00446329 /* AppDelegate.swift in Sources */,
+				420CB7152BB5F359005510A0 /* Bullets.swift in Sources */,
 				4230AA892BB565E200446329 /* Alien.swift in Sources */,
 				4230AA8B2BB56A3400446329 /* Settings.swift in Sources */,
 				4230AA872BB5622100446329 /* Player.swift in Sources */,
