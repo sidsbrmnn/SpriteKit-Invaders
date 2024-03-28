@@ -22,7 +22,7 @@ class Alien: SKSpriteNode {
         physicsBody?.affectedByGravity = false
         physicsBody?.categoryBitMask = Sprite.alien.rawValue
         physicsBody?.collisionBitMask = 0
-        physicsBody?.contactTestBitMask = Sprite.wall.rawValue | Sprite.playerBullet.rawValue
+        physicsBody?.contactTestBitMask = Sprite.wall.rawValue | Sprite.playerBullet.rawValue | Sprite.player.rawValue
     }
     
     convenience init() {

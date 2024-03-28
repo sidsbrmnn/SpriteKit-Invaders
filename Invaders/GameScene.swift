@@ -17,6 +17,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var aliens = Set<Alien>()
     var alienSpeed: Double = 64
     
+    var gameOver = false
+    
     override required init(size: CGSize) {
         super.init(size: size)
     }
@@ -65,9 +67,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         // after 1.5 seconds, the player will reappear and rejoin the physics simulation
-        player.run(SKAction.wait(forDuration: 1.5)) {
-            self.player.alpha = 1
-            self.player.setupPhysics()
+        if !gameOver {
+            player.run(SKAction.wait(forDuration: 1.5)) {
+                self.player.alpha = 1
+                self.player.setupPhysics()
+            }
         }
         
         // default the player to intial position
@@ -111,17 +115,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         let interval = SKAction.wait(forDuration: 0.5)
         let fire = SKAction.run {
-            if let alien = self.aliens.randomElement() {
-                let bullet = AlienBullet()
-                bullet.position.x = alien.position.x + 16
-                bullet.position.y = alien.position.y - 12
-                
-                self.gameBorder.addChild(bullet)
+            // fire only if game not over
+            if !self.gameOver {
+                if let alien = self.aliens.randomElement() {
+                    let bullet = AlienBullet()
+                    bullet.position.x = alien.position.x + 16
+                    bullet.position.y = alien.position.y - 12
+                    
+                    self.gameBorder.addChild(bullet)
+                }
             }
         }
         
         let sequence = SKAction.sequence([interval, fire])
         gameBorder.run(SKAction.repeatForever(sequence))
+    }
+    
+    fileprivate func endGame() {
+        gameOver = true
+        explodePlayer()
     }
     
     override func update(_ currentTime: TimeInterval) {
@@ -142,18 +154,32 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             // invert speed
             alienSpeed = -alienSpeed
             
-            // turn off direction
-            reverseDirection = false
-            
             // lower its position
             for alien in aliens {
                 alien.position.y -= 8
+                
+                if alien.position.y < player.position.y {
+                    endGame()
+                }
             }
         }
         
         for alien in aliens {
-            alien.physicsBody?.velocity = CGVector(dx: alienSpeed, dy: 0)
+            if gameOver {
+                if reverseDirection {
+                    if alienSpeed < 0 {
+                        alien.position.x -= 8
+                    } else {
+                        alien.position.x += 8
+                    }
+                }
+            }
+            
+            // if gameOver, stop alien movement
+            alien.physicsBody?.velocity = CGVector(dx: gameOver ? 0 : alienSpeed, dy: 0)
         }
+        
+        reverseDirection = false
     }
     
     func didBegin(_ contact: SKPhysicsContact) {
@@ -187,11 +213,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
         }
         
-        if spriteA?.name == "alienBullet" && spriteB?.name == "player" {
+        if (spriteA?.name == "alienBullet" && spriteB?.name == "player") || (spriteA?.name == "player" && spriteB?.name == "alienBullet") {
             explodePlayer()
         }
-        if spriteA?.name == "player" && spriteB?.name == "alienBullet" {
-            explodePlayer()
+        
+        if (spriteA?.name == "alien" && spriteB?.name == "player") || (spriteA?.name == "player" && spriteB?.name == "alien") {
+            endGame()
         }
     }
     
