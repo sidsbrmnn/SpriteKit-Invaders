@@ -11,9 +11,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameBorder = GameBorder()
     var player = Player()
+    
     var livesSprite = SKSpriteNode(imageNamed: "lives_3")
     var livesTextures: [SKTexture] = []
     var lives = 3
+    
+    var sounds = Sounds()
+    let pitches: [Float] = [0.0, 100.0, 200.0, 300.0, 400.0, 500.0, 600.0]
     
     var lastTouch: CGPoint?
     var reverseDirection = false
@@ -43,6 +47,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func explodePlayer() {
         lives -= 1
         updateLives()
+        
+        sounds.play("explode1", speed: gameOver ? 0.25 : 0.5)
         
         if player.alpha == 0 {
             return
@@ -172,6 +178,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         livesTextures.append(SKTexture(imageNamed: "lives_2"))
         livesTextures.append(SKTexture(imageNamed: "lives_3"))
         
+        sounds.preload("shoot")
+        sounds.preload("explode1")
+        
         updateLives()
         
         startWave()
@@ -186,6 +195,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                     bullet.position.y = alien.position.y - 12
                     
                     self.gameBorder.addChild(bullet)
+                    self.sounds.play("shoot", pitch: self.pitches.randomElement()!)
                 }
             }
         }
@@ -300,6 +310,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 spriteB?.run(explodeAlien()) {
                     spriteB?.removeFromParent()
                 }
+                self.sounds.play("explode1", pitch: pitches.randomElement()!)
                 self.aliens.remove(spriteB as! Alien)
             }
         }
@@ -334,6 +345,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bullet.position.x = player.position.x + 16
         bullet.position.y = player.position.y + 24
         gameBorder.addChild(bullet)
+        sounds.play("shoot")
     }
     
     override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
